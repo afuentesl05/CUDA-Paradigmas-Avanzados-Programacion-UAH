@@ -47,3 +47,45 @@ int globalThreadId = blockIdx.x * blockDim.x + threadIdx.x;
 - Los identificadores (`blockIdx`, `blockDim`, `threadIdx`) solo existen en código device
 - Usar `cudaDeviceSynchronize()` para sincronizar ejecución
 - El orden de ejecución no está garantizado en paralelo
+
+# Sesión 01 – Tarea 3: Sumar un valor X a un vector 1D
+
+## Objetivo
+El objetivo de esta tarea es implementar un kernel CUDA que, dado un **vector
+unidimensional**, sume un valor constante **X** a todos sus elementos.  
+La tarea se divide en dos partes para analizar cómo influye la configuración
+de ejecución del kernel (número de bloques e hilos) en la organización del
+paralelismo.
+
+---
+
+## Descripción del problema
+Dado un vector 1D de tamaño `n`, se desea aplicar la operación:
+
+```v[i] = v[i] + X
+```
+
+para cada uno de sus elementos, utilizando programación paralela mediante CUDA.
+
+---
+
+## Kernel CUDA
+
+```cpp
+__global__ void addX(int* d_v, int n, int X) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;  // índice global del hilo
+    if (i < n) {
+        d_v[i] += X;
+    }
+}
+```
+
+## Explicación
+
+Cada hilo calcula su índice global a partir de su identificador de bloque
+y su identificador local.
+
+La condición if (i < n) garantiza que no se acceda fuera de los límites del
+vector cuando el número total de hilos supera el tamaño del problema.
+
+Cada hilo es responsable de modificar un único elemento del vector.
