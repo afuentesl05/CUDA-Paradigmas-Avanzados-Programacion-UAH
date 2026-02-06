@@ -29,22 +29,22 @@ int main() {
         std::cout << "=== GPU #" << dev << " ===\n";
         std::cout << "Nombre del Device: " << p.name << "\n";
 
-        // Número máximo de hilos por bloque
+        // Nï¿½mero mï¿½ximo de hilos por bloque
         std::cout << "Max hilos por bloque: " << p.maxThreadsPerBlock << "\n";
 
-        // Dimensiones máximas de hilos por bloque (x,y,z)
+        // Dimensiones mï¿½ximas de hilos por bloque (x,y,z)
         std::cout << "Max dimensiones de hilos por bloque (x,y,z): "
             << p.maxThreadsDim[0] << ", "
             << p.maxThreadsDim[1] << ", "
             << p.maxThreadsDim[2] << "\n";
 
-        // Dimensiones máximas del grid (x,y,z)
+        // Dimensiones mï¿½ximas del grid (x,y,z)
         std::cout << "Max dimensiones del grid (x,y,z): "
             << p.maxGridSize[0] << ", "
             << p.maxGridSize[1] << ", "
             << p.maxGridSize[2] << "\n";
 
-        // Memoria global máxima disponible
+        // Memoria global mï¿½xima disponible
         double globalGB = static_cast<double>(p.totalGlobalMem) / (1024.0 * 1024.0 * 1024.0);
         std::cout << "Memoria global total (GB): " << std::fixed << std::setprecision(2)
             << globalGB << "\n";
@@ -52,12 +52,12 @@ int main() {
         // Memoria compartida por bloque
         std::cout << "Shared memory por bloque (bytes): " << p.sharedMemPerBlock << "\n";
 
-        // Registros por bloque (ojo: es el máximo de registros asignables por bloque)
+        // Registros por bloque 
         std::cout << "Registros max por bloque: " << p.regsPerBlock << "\n";
 
-        // Número máximo de hilos en un SM:
-        // CUDA Runtime no da “maxThreadsPerSM” directo como campo único universal en todas las docs antiguas,
-        // pero sí da warpSize y límites de ocupación (p.maxThreadsPerMultiProcessor existe en toolkits modernos).
+        // Nï¿½mero mï¿½ximo de hilos en un SM:
+        // CUDA Runtime no da ï¿½maxThreadsPerSMï¿½ directo como campo ï¿½nico universal en todas las docs antiguas,
+        // pero sï¿½ da warpSize y lï¿½mites de ocupaciï¿½n (p.maxThreadsPerMultiProcessor existe en toolkits modernos).
         std::cout << "Max hilos por SM (multi-processor): " << p.maxThreadsPerMultiProcessor << "\n";
 
         std::cout << "\n";
