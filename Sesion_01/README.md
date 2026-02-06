@@ -1,4 +1,4 @@
-```markdown
+
 # Sesión 01 – Device Properties
 
 En esta sesión se realiza una primera toma de contacto con el entorno CUDA,
